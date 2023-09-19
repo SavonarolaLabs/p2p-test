@@ -20,12 +20,14 @@ console.log({clusterId})
 
     
    peer.on('greeting', (value, peer, address, port) => {
+   console.log('!!!!!!!!!!!GREETING')
    console.log(value)
-     })
+  })
 
 // window.onload = () => {
    const value = { english: 'hello, world' }
    const packet = await peer.emit('greeting', value)
+   console.log("packet sent")
    console.log({packet})
 // }
 })
