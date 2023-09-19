@@ -1,9 +1,39 @@
 <script>
+  import { onMount } from 'svelte';
   import svelteLogo from './assets/svelte.svg'
   import Counter from './lib/Counter.svelte'
   import os from 'socket:os'
+  import { Peer } from 'socket:peer'
 
   const toProperCase = s => s[0].toUpperCase() + s.slice(1)
+
+  onMount(async ()=>{
+    const pair = await Peer.createKeys()
+    const clusterId = await Peer.createClusterId()
+
+    const peer = new Peer({ ...pair, clusterId })
+console.log("---------------")
+console.log(peer)
+console.log(("---------------"))
+    
+   peer.on('greeting', (value, peer, address, port) => {
+   console.log(value)
+     })
+
+// window.onload = () => {
+   const value = { english: 'hello, world' }
+   const packet = await peer.emit('greeting', value)
+// }
+
+console.log(pair)
+console.log(clusterId)
+    console.log("log")
+
+})
+
+
+
+
 </script>
 
 <main>
