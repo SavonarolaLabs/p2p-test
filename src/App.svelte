@@ -12,9 +12,8 @@
     const clusterId = await Peer.createClusterId()
 
     const peer = new Peer({ ...pair, clusterId })
-console.log("---------------")
-console.log(peer)
-console.log(("---------------"))
+console.log({clusterId})
+
     
    peer.on('greeting', (value, peer, address, port) => {
    console.log(value)
@@ -24,11 +23,6 @@ console.log(("---------------"))
    const value = { english: 'hello, world' }
    const packet = await peer.emit('greeting', value)
 // }
-
-console.log(pair)
-console.log(clusterId)
-    console.log("log")
-
 })
 
 
