@@ -11,15 +11,13 @@
   let port;
   let address;
   let peer;
+  let text = ''
 
   onMount(async () => {
     const pair = await Peer.createKeys();
-    const clusterId =
-      "7b51fd73d4fa2e54d3df8a3f8400aaf4f189f9be0914eb5cbf632ed1a2ad4f9f";
+    const clusterId = "7b51fd73d4fa2e54d3df8a3f8400aaf4f189f9be0914eb5cbf632ed1a2ad4f9f";
     peer = new Peer({ ...pair, clusterId });
     network = await peer.join();
-    //peer.write('foo', { value: true })
-
     console.log({ clusterId });
 
     peer.on("greeting", (value, peer, address, port) => {
@@ -28,14 +26,11 @@
 
     const packet = await peer.emit("greeting", { hello: "world" });
     console.log("packet sent");
-    //console.log({ packet });
-
   });
 
   function sendText(txt){
     peer.emit("greeting", { hello: txt });
   }
-  let text = ''
 </script>
 
 <main>
