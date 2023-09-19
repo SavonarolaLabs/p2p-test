@@ -22,6 +22,7 @@ console.log({clusterId})
 // window.onload = () => {
    const value = { english: 'hello, world' }
    const packet = await peer.emit('greeting', value)
+   console.log({packet})
 // }
 })
 
