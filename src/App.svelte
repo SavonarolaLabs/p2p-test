@@ -9,7 +9,7 @@
 
   onMount(async ()=>{
     const pair = await Peer.createKeys()
-    const clusterId = await Peer.createClusterId()
+    const clusterId = '7b51fd73d4fa2e54d3df8a3f8400aaf4f189f9be0914eb5cbf632ed1a2ad4f9f'
 
     const peer = new Peer({ ...pair, clusterId })
 console.log({clusterId})
