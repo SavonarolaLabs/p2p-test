@@ -10,11 +10,10 @@
   onMount(async ()=>{
     const pair = await Peer.createKeys()
     const clusterId = '7b51fd73d4fa2e54d3df8a3f8400aaf4f189f9be0914eb5cbf632ed1a2ad4f9f'
-
     const peer = new Peer({ ...pair, clusterId })
-
-    await peer.join()
+    const network=await peer.join()
     //peer.write('foo', { value: true })
+
 
 console.log({clusterId})
 
@@ -24,12 +23,32 @@ console.log({clusterId})
    console.log(value)
   })
 
+
+
 // window.onload = () => {
    const value = { english: 'hello, world' }
    const packet = await peer.emit('greeting', value)
    console.log("packet sent")
    console.log({packet})
 // }
+
+
+
+
+
+network.onData = (packet, port, address, data) => {
+  if (packet.message.length) return // ignore control packets
+
+  const unsealed = data
+  if (!unsealed) return // use caution
+
+  console.log(Date.now(),{unsealed})
+}
+
+network.onConnect = (peer, packet, port, address) => {
+  network.send("abc", port, address)
+}
+
 })
 
 
@@ -41,7 +60,7 @@ console.log({clusterId})
   <div>
     <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
   </div>
-  <h1>Vite + Svelte (on {toProperCase(os.platform())})</h1>
+  <h1>Vite + svelte svelte (on {toProperCase(os.platform())})</h1>
 
   <div class="card">
     <Counter />
