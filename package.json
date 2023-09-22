@@ -6,6 +6,7 @@
   "scripts": {
     "test": "ssc build -r -o --test=./test/index.js --headless",
     "init-project": "ssc init",
+    "dev": "ssc build -r -o",
     "start": "ssc build -r -o",
     "build": "ssc build -o"
   },
